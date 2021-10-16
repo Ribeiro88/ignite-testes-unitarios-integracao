@@ -1,0 +1,25 @@
+version: "3.7"
+
+services:
+  database_finApi:
+    image: postgres
+    container_name: database_finApi
+    restart: always
+    ports:
+      - 5433:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=docker
+      - POSTGRES_DB=fin_api
+    volumes:
+      - pgdata:/data/postgres
+    networks:
+      - backend
+
+volumes:
+  pgdata:
+    driver: local
+
+networks:
+  backend:
+    driver: "bridge"
